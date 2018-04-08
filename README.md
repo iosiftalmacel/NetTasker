@@ -34,11 +34,11 @@ Download photo into ImageView:
 NetTasker.request(ImageDownload(imageView,{
     it.url = "www.example.com" 
     it.from = RequestFrom.Cache                         // should donwload from web or check if cached first
-    it.errorDrawable = ColorDrawable(Color.RED)         // the drawable to show when there was an error downloading the photo
-    it.placeholderDrawable = ColorDrawable(Color.GREY)  // the drawable to show until the photo is downloaded
-    it.fadeDuration = 200                               // duration of the fade from the placeholder to the photo
-    it.saveInMemory = true                              // should  save the photo in memory for faster access
-    it.saveOnDisk = true                                // should  save the photo on the disk for faster access
+    it.errorDrawable = ColorDrawable(Color.RED)         // to show when getting an error downloading
+    it.placeholderDrawable = ColorDrawable(Color.GREY)  // to show until the photo is downloaded
+    it.fadeDuration = 200                               // fade duration from the placeholder to the photo
+    it.saveInMemory = true                              // should save the photo in memory for faster access
+    it.saveOnDisk = true                                // should save the photo on the disk for faster access
     it.timeout = 8000                                   // the timeout of the request
 }))
 ```
