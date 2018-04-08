@@ -15,15 +15,15 @@ import com.oryoncorp.apps.netload.requests.read.ImageDownload
 import com.oryoncorp.apps.netload.requests.read.RequestFrom
 
 import com.oryoncorp.apps.nettaskersample.R
-import com.oryoncorp.apps.nettaskersample.models.ProductItemData
+import com.oryoncorp.apps.nettaskersample.models.ItemData
 
 /**
  * Created by Iosif on 17/03/2018.
  */
 
-class ProductsRecyclerAdapter(private val mContext: Context, private var mItems: Array<ProductItemData>?) : RecyclerView.Adapter<ProductsRecyclerAdapter.ItemViewHolder>() {
+class ExampleRecyclerAdapter(private val mContext: Context, private var mItems: Array<ItemData>?) : RecyclerView.Adapter<ExampleRecyclerAdapter.ItemViewHolder>() {
 
-    fun setItems(items: Array<ProductItemData>) {
+    fun setItems(items: Array<ItemData>) {
         mItems = items
     }
 

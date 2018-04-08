@@ -10,13 +10,13 @@ import android.view.View
 
 import com.oryoncorp.apps.netload.NetTasker
 import com.oryoncorp.apps.netload.requests.read.ModelDownload
-import com.oryoncorp.apps.nettaskersample.adapters.ProductsRecyclerAdapter
-import com.oryoncorp.apps.nettaskersample.models.ProductsContainerData
+import com.oryoncorp.apps.nettaskersample.adapters.ExampleRecyclerAdapter
+import com.oryoncorp.apps.nettaskersample.models.ContainerData
 import com.oryoncorp.apps.nettaskersample.utils.AutofitRecyclerView
 import com.oryoncorp.apps.nettaskersample.R
 
-class ProductsListActivity : AppCompatActivity() {
-    lateinit var adapter: ProductsRecyclerAdapter
+class ExampleListActivity : AppCompatActivity() {
+    lateinit var adapter: ExampleRecyclerAdapter
     var URL = "https://ri.nn4m.net/RI/sv5/api/public/index.php/category/2508/products.json"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,9 +27,9 @@ class ProductsListActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayShowTitleEnabled(true)
         toolbar.setTitleTextColor(Color.BLACK)
 
-        adapter = ProductsRecyclerAdapter(this, null)
+        adapter = ExampleRecyclerAdapter(this, null)
 
-        NetTasker.request(ModelDownload(this, ProductsContainerData::class.java){
+        NetTasker.request(ModelDownload(this, ContainerData::class.java){
             it.url = URL
             it.onComplete = {
                 adapter.setItems(it.Products)

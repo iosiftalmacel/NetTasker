@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by Iosif on 17/03/2018.
  */
 
-public class ProductItemData implements Serializable {
+public class ItemData implements Serializable {
     public String name;
     public String cost;
     public String costEUR;
