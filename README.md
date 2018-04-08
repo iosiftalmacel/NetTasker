@@ -14,16 +14,16 @@ Step 1. Add the JitPack repository to your build file
 Add it in your root build.gradle at the end of repositories:
 ```sh
 allprojects {
-	repositories {
-		...
-		maven { url 'https://jitpack.io' }
-	}
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
 }
 ```
 Step 2. Add the dependency
 ```sh
 dependencies {
-	compile 'com.github.iosiftalmacel:NetTasker:0.0.1'
+    compile 'com.github.iosiftalmacel:NetTasker:0.0.1'
 }
 ```
 
@@ -34,55 +34,55 @@ A series of examples of how to use the NetTask library.
 Download photo into ImageView:
 ```
 NetTasker.request(ImageDownload(imageView,{
-	it.url = "www.example.com" 
-	it.from = RequestFrom.Cache				// should donwload from web or check if cached first
-	it.errorDrawable = ColorDrawable(Color.RED)		// the drawable to show when there was an error downloading the photo
-	it.placeholderDrawable = ColorDrawable(Color.GREY)	// the drawable to show until the photo is downloaded
-	it.fadeDuration = 200					// duration of the fade from the placeholder to the photo
-	it.saveInMemory = true					// should  save the photo in memory for faster access
-	it.saveOnDisk = true					// should  save the photo on the disk for faster access
-	it.timeout = 8000					// the timeout of the request
+    it.url = "www.example.com" 
+    it.from = RequestFrom.Cache                // should donwload from web or check if cached first
+    it.errorDrawable = ColorDrawable(Color.RED)        // the drawable to show when there was an error downloading the photo
+    it.placeholderDrawable = ColorDrawable(Color.GREY)    // the drawable to show until the photo is downloaded
+    it.fadeDuration = 200                    // duration of the fade from the placeholder to the photo
+    it.saveInMemory = true                    // should  save the photo in memory for faster access
+    it.saveOnDisk = true                    // should  save the photo on the disk for faster access
+    it.timeout = 8000                    // the timeout of the request
 }))
 ```
 
 Download photo and listen for completion:
 ```
 NetTasker.request(BitmapDownload(context,{
-	it.url = "www.example.com"
-	it.onComplete = {
-		bitmap ->imageView.setImageBitmap(bitmap)  
-	}
-	it.onError = {
-		Log.e("NetTask", "Error downloading the bitmap")
-	}
+    it.url = "www.example.com"
+    it.onComplete = {
+        bitmap ->imageView.setImageBitmap(bitmap)  
+    }
+    it.onError = {
+        Log.e("NetTask", "Error downloading the bitmap")
+    }
 }))
 ```
 
 Download file:
 ```
 NetTasker.request(FileDownload(context,{
-	it.url = "www.example.com"
-	it.fileName = "test.zip"
-	it.path = context.cacheDir
-	it.onComplete = {
-		file -> Log.e("NetTask", "File size ${file.length() / 1024}")
-	}
-	it.onError = {
-		Log.e("NetTask", "Error downloading file")
-	}
+    it.url = "www.example.com"
+    it.fileName = "test.zip"
+    it.path = context.cacheDir
+    it.onComplete = {
+        file -> Log.e("NetTask", "File size ${file.length() / 1024}")
+    }
+    it.onError = {
+        Log.e("NetTask", "Error downloading file")
+    }
 }))
 ```
 
 Download json:
 ```
 NetTasker.request(JsonDownload(context, {
-	it.url = "www.example.com"
-	it.onCompleteObj = {
-		jsonObj -> Log.e("NetTask", "Json download successful")
-	}
-	it.onError = {
-		Log.e("NetTask", "Error downloading json")
-	}
+    it.url = "www.example.com"
+    it.onCompleteObj = {
+        jsonObj -> Log.e("NetTask", "Json download successful")
+    }
+    it.onError = {
+        Log.e("NetTask", "Error downloading json")
+    }
 }))
 ```
 
@@ -91,25 +91,25 @@ Download Class Model:
 class Example(val name: String, val age: Int)
 
 NetTasker.request(ModelDownload(context, Example::class.java,{
-	it.url = "www.example.com"
-	it.onComplete = {
-		model -> Log.e("NetTask", "Example: ${model.name}, ${model.age}")
-	}
-	it.onError = {
-		Log.e("NetTask", "Error downloading json")
-	}
+    it.url = "www.example.com"
+    it.onComplete = {
+        model -> Log.e("NetTask", "Example: ${model.name}, ${model.age}")
+    }
+    it.onError = {
+        Log.e("NetTask", "Error downloading json")
+    }
 }))
 ``` 
 
 Upload file:
 ```
 NetTasker.request(FileUpload(context, {
-	it.url = "www.example.com"
-	it.type = UploadType.POST
-	it.filepath = "path/path/path.extension"
-	it.onFinish = {
-		wasSuccess -> Log.e("NetTask", "File was uploaded: $wasSuccess")
-	}
+    it.url = "www.example.com"
+    it.type = UploadType.POST
+    it.filepath = "path/path/path.extension"
+    it.onFinish = {
+        wasSuccess -> Log.e("NetTask", "File was uploaded: $wasSuccess")
+    }
 }))
 ```
 
