@@ -99,7 +99,7 @@ NetTasker.request(ModelDownload(context, Example::class.java,{
 		Log.e("NetTask", "Error downloading json")
 	}
 }))
-```
+``` 
 
 Upload file:
 ```
