@@ -8,9 +8,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-First of all you need to setup the gradle to be able to use the library.
-
-Step 1. Add the JitPack repository to your build file
+Step 1. Add the JitPack repository to your build file.
 Add it in your root build.gradle at the end of repositories:
 ```sh
 allprojects {
