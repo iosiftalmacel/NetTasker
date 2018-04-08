@@ -14,11 +14,11 @@ abstract class UploadRequest(context: Context) : NetRequest(context){
     protected abstract fun onStartUpload(stream: DataOutputStream)
     protected abstract fun onUploadFinished()
 
-    fun onUploadFinishedInternal(){
+    internal fun onUploadFinishedInternal(){
         if(!cancelled && context != null) onUploadFinished()
     }
 
-    fun onStartUploadInternal(stream: DataOutputStream)
+    internal fun onStartUploadInternal(stream: DataOutputStream)
             = onStartUpload(stream)
 
 }

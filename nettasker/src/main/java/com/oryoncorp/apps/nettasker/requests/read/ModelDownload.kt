@@ -10,7 +10,7 @@ import org.json.JSONObject
 class ModelDownload<T>(context: Context, tClass: Class<T>, configure: (ModelDownload<T>) -> Unit) : JsonRequestBase(context){
     override lateinit var url: String
     lateinit var onComplete: (T) -> Unit
-    var model : Class<T> = tClass
+    private var model : Class<T> = tClass
     var onError: (() -> Unit)? = null
 
     init {

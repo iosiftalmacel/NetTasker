@@ -29,8 +29,8 @@ abstract class DownloadRequest<T>(context: Context) : NetRequest(context){
     protected abstract fun onSaveToMemory(data: T, defaultCache: LruCache<String, Any>)
     protected abstract fun onDataReceived(data: T, source: DataSource)
 
-    fun shouldGetFromCache() : Boolean = from == RequestFrom.Cache || from == RequestFrom.CacheAndWeb
-    fun shouldGetFromWeb() : Boolean = from == RequestFrom.Web || from == RequestFrom.CacheAndWeb
+    internal fun shouldGetFromCache() : Boolean = from == RequestFrom.Cache || from == RequestFrom.CacheAndWeb
+    internal fun shouldGetFromWeb() : Boolean = from == RequestFrom.Web || from == RequestFrom.CacheAndWeb
 
 
     override fun hasFinished(): Boolean {
@@ -44,15 +44,15 @@ abstract class DownloadRequest<T>(context: Context) : NetRequest(context){
         return super.hasFinished()
     }
 
-    open fun hasMemoryCache(defaultCache: LruCache<String, Any>) : Boolean{
+    internal open fun hasMemoryCache(defaultCache: LruCache<String, Any>) : Boolean{
         return defaultCache[url] != null
     }
 
-    open fun hasDiskCache(context: WeakReference<Context>) : Boolean{
+    internal open fun hasDiskCache(context: WeakReference<Context>) : Boolean{
         return context.get() != null && File(context.get()!!.cacheDir, computeFileName()).exists()
     }
 
-    open fun computeFileName() : String?{
+    protected open fun computeFileName() : String?{
         return try {
             URLEncoder.encode(url, "UTF-8")
         } catch (e: UnsupportedEncodingException) {
@@ -61,22 +61,22 @@ abstract class DownloadRequest<T>(context: Context) : NetRequest(context){
     }
 
 
-    fun onLoadFromWebInternal(stream: InputStream): T?
+    internal fun onLoadFromWebInternal(stream: InputStream): T?
             = onLoadFromWeb(stream)
 
-    fun onLoadFromDiskInternal(file: File) : T?
+    internal fun onLoadFromDiskInternal(file: File) : T?
             = onLoadFromDisk(file)
 
-    fun onLoadFromMemoryInternal(defaultCache: LruCache<String, Any>)
+    internal fun onLoadFromMemoryInternal(defaultCache: LruCache<String, Any>)
             = onLoadFromMemory(defaultCache)
 
-    fun onSaveToDiskInternal(file: File, data: Any)
+    internal fun onSaveToDiskInternal(file: File, data: Any)
             = onSaveToDisk(file, cast(data))
 
-    fun onSaveToMemoryInternal(defaultCache: LruCache<String, Any>, data: Any)
+    internal fun onSaveToMemoryInternal(defaultCache: LruCache<String, Any>, data: Any)
             = onSaveToMemory(cast(data), defaultCache)
 
-    fun onDataReceivedInternal(data: Any, source: DataSource){
+    internal fun onDataReceivedInternal(data: Any, source: DataSource){
         if(!cancelled && context != null) onDataReceived(cast(data), source)
     }
 

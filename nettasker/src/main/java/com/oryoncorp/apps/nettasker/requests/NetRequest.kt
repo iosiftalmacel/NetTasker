@@ -30,10 +30,10 @@ abstract class NetRequest(context: Context) {
         hadError = true
     }
 
-    open fun hasFinished(): Boolean {
+    internal open fun hasFinished(): Boolean {
         return isTimeout() || hadError || cancelled
     }
-    open fun isTimeout(): Boolean{
+    internal open fun isTimeout(): Boolean{
         return System.currentTimeMillis() - startTime > timeout
     }
     internal open fun onCancelRequest(){
