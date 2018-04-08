@@ -52,7 +52,7 @@ abstract class DownloadRequest<T>(context: Context) : NetRequest(context){
         return context.get() != null && File(context.get()!!.cacheDir, computeFileName()).exists()
     }
 
-    protected open fun computeFileName() : String?{
+    internal open fun computeFileName() : String?{
         return try {
             URLEncoder.encode(url, "UTF-8")
         } catch (e: UnsupportedEncodingException) {
